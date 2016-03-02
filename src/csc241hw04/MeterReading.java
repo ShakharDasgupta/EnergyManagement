@@ -40,7 +40,7 @@ public class MeterReading {
         return reading;
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDateTime getDate() {
         return dateTime;
     }
 
