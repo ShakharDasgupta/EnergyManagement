@@ -23,5 +23,5 @@ package csc241hw04;
 public interface Constants {
 
     double residentialUnitRate = 0.14;
-    double commercailUnitRate = 0.125;
+    double commercialUnitRate = 0.125;
 }

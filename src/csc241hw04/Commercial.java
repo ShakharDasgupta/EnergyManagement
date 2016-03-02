@@ -22,8 +22,8 @@ package csc241hw04;
  */
 public class Commercial extends Address {
 
-    public Commercial(String street, int number, String zipCode) {
-        super(street, number, zipCode, "Commercial");
+    public Commercial(String street, int number, String zipCode, String type) {
+        super(street, number, zipCode, type);
     }
 
     public String getType() {

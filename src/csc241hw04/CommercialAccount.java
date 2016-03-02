@@ -35,6 +35,6 @@ public class CommercialAccount extends Account {
                 }
             }
         }
-        setBalance(sum * Constants.commercailUnitRate);
+        setBalance(sum * Constants.commercialUnitRate);
     }
 }
