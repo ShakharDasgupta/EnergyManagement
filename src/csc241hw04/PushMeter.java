@@ -22,11 +22,11 @@ package csc241hw04;
  */
 public class PushMeter extends Meter {
 
-    public PushMeter(String id, String brand) {
-        super(id, brand, "Push");
+    public PushMeter(String id, String brand, String type) {
+        super(id, brand, type);
     }
 
     public String getType() {
-        return "Push";
+        return type;
     }
 }

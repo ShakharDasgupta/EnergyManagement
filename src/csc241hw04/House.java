@@ -22,11 +22,11 @@ package csc241hw04;
  */
 public class House extends Address {
 
-    public House(String street, int number, String zipCode) {
-        super(street, number, zipCode, "House");
+    public House(String street, int number, String zipCode, String type) {
+        super(street, number, zipCode, type);
     }
 
     public String getType() {
-        return "House";
+        return type;
     }
 }

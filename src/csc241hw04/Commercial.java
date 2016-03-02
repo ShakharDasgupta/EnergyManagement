@@ -27,7 +27,7 @@ public class Commercial extends Address {
     }
 
     public String getType() {
-        return "Commercial";
+        return type;
     }
 
 }

@@ -24,12 +24,12 @@ public class PollMeter extends Meter {
 
     private int interval;
 
-    public PollMeter(String id, String brand) {
-        super(id, brand, "Poll");
+    public PollMeter(String id, String brand, String type) {
+        super(id, brand, type);
     }
 
     public String getType() {
-        return "Poll";
+        return type;
     }
 
     public void setInterval(int s) {

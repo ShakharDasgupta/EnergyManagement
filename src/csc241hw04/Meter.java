@@ -27,7 +27,7 @@ public abstract class Meter {
     private String ID;
     private ArrayList<MeterReading> readings;
     private String brand;
-    private String type;
+    protected String type;
     private Address address;
     private String locationNotes;
 

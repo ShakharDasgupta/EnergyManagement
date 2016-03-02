@@ -27,7 +27,7 @@ public abstract class Address {
     private String street;
     private int number;
     private String zipCode;
-    private String type;
+    protected String type;
     private ArrayList<Meter> meters;
     private Account account;
 

@@ -24,13 +24,13 @@ public class Apartment extends Address {
 
     private String unit;
 
-    public Apartment(String street, int number, String zipCode, String unit) {
-        super(street, number, zipCode, "Apartment");
+    public Apartment(String street, int number, String zipCode, String type, String unit) {
+        super(street, number, zipCode, type);
         this.unit = unit;
     }
 
     public String getType() {
-        return "Apartment";
+        return type;
     }
 
     public void setUnit(String u) {
