@@ -22,11 +22,21 @@ package csc241hw04;
  */
 public class PushMeter extends Meter {
 
+    private int interval;
+
     public PushMeter(String id, String brand, String type) {
         super(id, brand, type);
     }
 
     public String getType() {
         return type;
+    }
+
+    public void setInterval(int s) {
+        interval = s;
+    }
+
+    public int getInterval() {
+        return interval;
     }
 }

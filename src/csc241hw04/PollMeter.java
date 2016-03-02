@@ -22,8 +22,6 @@ package csc241hw04;
  */
 public class PollMeter extends Meter {
 
-    private int interval;
-
     public PollMeter(String id, String brand, String type) {
         super(id, brand, type);
     }
@@ -32,11 +30,4 @@ public class PollMeter extends Meter {
         return type;
     }
 
-    public void setInterval(int s) {
-        interval = s;
-    }
-
-    public int getInterval() {
-        return interval;
-    }
 }
