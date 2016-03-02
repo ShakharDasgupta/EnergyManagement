@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw02;
+package csc241hw04;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author Shakhar Dasgupta <sdasgupt@oswego.edu>
  */
-public class Meter {
+public abstract class Meter {
 
     private String ID;
     private ArrayList<MeterReading> readings;
@@ -62,9 +62,7 @@ public class Meter {
         return brand;
     }
 
-    public String getType() {
-        return type;
-    }
+    public abstract String getType();
 
     public String getLocation() {
         return locationNotes;

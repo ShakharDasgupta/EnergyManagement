@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw02;
+package csc241hw04;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author Shakhar Dasgupta <sdasgupt@oswego.edu>
  */
-public class Account {
+public abstract class Account {
 
     private String accountNumber;
     private Customer customer;
@@ -59,4 +59,10 @@ public class Account {
     public boolean removeAddress(Address a) {
         return addresses.remove(a);
     }
+    
+    public void setBalance(double b) {
+        currentBalance = b;
+    }
+    
+    public abstract void updateBalance();
 }

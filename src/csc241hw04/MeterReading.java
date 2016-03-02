@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw02;
+package csc241hw04;
 
 import java.time.LocalDateTime;
 
@@ -24,19 +24,19 @@ import java.time.LocalDateTime;
  */
 public class MeterReading {
 
-    private float reading;
+    private double reading;
     private LocalDateTime dateTime;
     private String flag;
     private Meter meter;
 
-    public MeterReading(float reading, LocalDateTime dateTime, String flag, Meter meter) {
+    public MeterReading(double reading, LocalDateTime dateTime, String flag, Meter meter) {
         this.reading = reading;
         this.dateTime = dateTime;
         this.flag = flag;
         this.meter = meter;
     }
 
-    public float getReading() {
+    public double getReading() {
         return reading;
     }
 
