@@ -23,7 +23,7 @@ package csc241hw04;
 public class PollMeter extends Meter {
 
     public PollMeter(String id, String brand, String type) {
-        super(id, brand, type);
+        super(id, brand, "poll");
     }
 
     public String getType() {

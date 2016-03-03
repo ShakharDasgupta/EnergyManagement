@@ -25,7 +25,7 @@ public class PushMeter extends Meter {
     private int interval;
 
     public PushMeter(String id, String brand, String type) {
-        super(id, brand, type);
+        super(id, brand, "push");
     }
 
     public String getType() {
