@@ -27,7 +27,7 @@ public class ResidentialAccount extends Account {
     }
 
     public void updateBalance() {
-        int sum = 0;
+        double sum = 0;
         for (Address a : getAddresses()) {
             for (Meter m : a.getMeters()) {
                 for (MeterReading mr : m.getReadings()) {
