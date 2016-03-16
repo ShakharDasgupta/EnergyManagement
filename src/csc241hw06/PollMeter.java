@@ -14,30 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw04;
+package csc241hw06;
 
 /**
  *
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
-public class Apartment extends Address {
+public class PollMeter extends Meter {
 
-    private String unit;
-
-    public Apartment(String street, int number, String zipCode, String type, String unit) {
-        super(street, number, zipCode, type);
-        this.unit = unit;
+    public PollMeter(String id, String brand, String type) {
+        super(id, brand, "poll");
     }
 
     public String getType() {
         return type;
     }
 
-    public void setUnit(String u) {
-        unit = u;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
 }

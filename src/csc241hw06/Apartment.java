@@ -14,29 +14,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw04;
+package csc241hw06;
 
 /**
  *
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
-public class PushMeter extends Meter {
+public class Apartment extends Address {
 
-    private int interval;
+    private String unit;
 
-    public PushMeter(String id, String brand, String type) {
-        super(id, brand, "push");
+    public Apartment(String street, int number, String zipCode, String type, String unit) {
+        super(street, number, zipCode, type);
+        this.unit = unit;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setInterval(int s) {
-        interval = s;
+    public void setUnit(String u) {
+        unit = u;
     }
 
-    public int getInterval() {
-        return interval;
+    public String getUnit() {
+        return unit;
     }
 }

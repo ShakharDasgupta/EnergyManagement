@@ -14,14 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw04;
+package csc241hw06;
 
 /**
  *
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
-public interface Constants {
+public class Commercial extends Address {
 
-    double residentialUnitRate = 0.14;
-    double commercialUnitRate = 0.125;
+    public Commercial(String street, int number, String zipCode, String type) {
+        super(street, number, zipCode, type);
+    }
+
+    public String getType() {
+        return type;
+    }
+
 }

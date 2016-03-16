@@ -14,15 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw04;
+package csc241hw06;
 
 /**
  *
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
-public class CommercialAccount extends Account {
+public class ResidentialAccount extends Account {
 
-    public CommercialAccount(String accountNumber, Customer customer) {
+    public ResidentialAccount(String accountNumber, Customer customer) {
         super(accountNumber, customer);
     }
 
@@ -35,6 +35,6 @@ public class CommercialAccount extends Account {
                 }
             }
         }
-        setBalance(sum * Constants.commercialUnitRate);
+        setBalance(sum * Constants.residentialUnitRate);
     }
 }
