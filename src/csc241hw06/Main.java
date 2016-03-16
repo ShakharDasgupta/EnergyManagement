@@ -38,13 +38,18 @@ public class Main {
         reader.setContentHandler(handler);
         reader.parse(file);
         ArrayList<Customer> customers = handler.getCustomers();
+        boolean found = false;
         for(Customer customer : handler.getCustomers()) {
             for(Account account : customer.getAccounts()) {
                 if(account.getAccountNumber().equals(accountNumber)) {
+                    found = true;
                     DecimalFormat df = new DecimalFormat("#.00");
                     System.out.println("Balance: $" + df.format(account.getCurrentBalance()));
                 }
             }
+        }
+        if(!found) {
+            System.out.println("Account number " + accountNumber + " not found.");
         }
     }
 }
