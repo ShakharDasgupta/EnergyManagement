@@ -27,7 +27,8 @@ import org.xml.sax.XMLReader;
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
 public class Main {
-    public static void main(String[] args) throws Exception{
+
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the input file name:");
         String file = sc.nextLine();
@@ -39,16 +40,16 @@ public class Main {
         reader.parse(file);
         ArrayList<Customer> customers = handler.getCustomers();
         boolean found = false;
-        for(Customer customer : handler.getCustomers()) {
-            for(Account account : customer.getAccounts()) {
-                if(account.getAccountNumber().equals(accountNumber)) {
+        for (Customer customer : handler.getCustomers()) {
+            for (Account account : customer.getAccounts()) {
+                if (account.getAccountNumber().equals(accountNumber)) {
                     found = true;
                     DecimalFormat df = new DecimalFormat("#.00");
                     System.out.println("Balance: $" + df.format(account.getCurrentBalance()));
                 }
             }
         }
-        if(!found) {
+        if (!found) {
             System.out.println("Account number " + accountNumber + " not found.");
         }
     }

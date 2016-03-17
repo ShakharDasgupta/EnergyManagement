@@ -28,22 +28,24 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
 public class EMSHandler extends DefaultHandler {
-    
+
     private ArrayList<Customer> customers;
     private Customer customer;
     private Account account;
     private Address address;
+    private ArrayList<Address> addresses;
     private Meter meter;
     private MeterReading meterReading;
     private String lastName;
     private String firstName;
     private String accountType;
     private String accountNumber;
-    
+
     public void startDocument() throws SAXException {
         customers = new ArrayList<>();
+        addresses = new ArrayList<>();
     }
-    
+
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         switch (qName) {
             case "customer":
@@ -61,16 +63,22 @@ public class EMSHandler extends DefaultHandler {
                     } else {
                         address = new Commercial(attributes.getValue("street"), Integer.parseInt(attributes.getValue("number")), attributes.getValue("zipCode"), "mailing");
                     }
-                    customer = new Customer(lastName, firstName, address);
-                    if (accountType.equals("residential")) {
-                        account = new ResidentialAccount(accountNumber, customer);
-                    } else if (accountType.equals("commercial")) {
-                        account = new CommercialAccount(accountNumber, customer);
+                    if (customer == null) {
+                        customer = new Customer(lastName, firstName, address);
+                    }
+                    if (account == null) {
+                        if (accountType.equals("residential")) {
+                            account = new ResidentialAccount(accountNumber, customer);
+                        } else if (accountType.equals("commercial")) {
+                            account = new CommercialAccount(accountNumber, customer);
+                        }
                     }
                 } else if (attributes.getValue("type").equals("apartment")) {
                     address = new Apartment(attributes.getValue("street"), Integer.parseInt(attributes.getValue("number")), attributes.getValue("zipCode"), "apartment", attributes.getValue("unit"));
                 } else if (attributes.getValue("type").equals("commercial")) {
                     address = new Commercial(attributes.getValue("street"), Integer.parseInt(attributes.getValue("number")), attributes.getValue("zipCode"), "commercial");
+                } else if (attributes.getValue("type").equals("house")) {
+                    address = new House(attributes.getValue("street"), Integer.parseInt(attributes.getValue("number")), attributes.getValue("zipCode"), "house");
                 }
                 break;
             case "meter":
@@ -87,33 +95,39 @@ public class EMSHandler extends DefaultHandler {
                 break;
         }
     }
-    
+
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName) {
             case "customer":
                 customers.add(customer);
+                customer = null;
                 break;
             case "account":
+                for (Address a : addresses) {
+                    account.addAddress(a);
+                }
+                addresses = new ArrayList<>();
                 account.updateBalance();
                 customer.addAccount(account);
+                account = null;
                 break;
             case "address":
                 if (!address.getType().equals("mailing")) {
-                    account.addAddress(address);
+                    addresses.add(address);
                 }
+                address = null;
                 break;
             case "meter":
                 address.addMeter(meter);
+                meter = null;
                 break;
             case "meterReading":
                 meter.addReading(meterReading);
+                meterReading = null;
+                break;
         }
     }
-    
-    public void endDocument() throws SAXException {
-        
-    }
-    
+
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
