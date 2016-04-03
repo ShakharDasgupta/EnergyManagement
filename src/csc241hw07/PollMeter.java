@@ -14,27 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw06;
+package csc241hw07;
 
 /**
  *
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
-public class CommercialAccount extends Account {
+public class PollMeter extends Meter {
 
-    public CommercialAccount(String accountNumber, Customer customer) {
-        super(accountNumber, customer);
+    public PollMeter(String id, String brand, String type) {
+        super(id, brand, "poll");
     }
 
-    public void updateBalance() {
-        double sum = 0;
-        for (Address a : getAddresses()) {
-            for (Meter m : a.getMeters()) {
-                for (MeterReading mr : m.getReadings()) {
-                    sum += mr.getReading();
-                }
-            }
-        }
-        setBalance(sum * Constants.commercialUnitRate);
+    public String getType() {
+        return type;
     }
+
 }
