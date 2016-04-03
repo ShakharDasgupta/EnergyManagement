@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw06;
+package csc241hw07;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -86,12 +86,12 @@ public class EMSHandler extends DefaultHandler {
                     meter = new PushMeter(attributes.getValue("id"), attributes.getValue("brand"), "push");
                     meter.setLocation(address, attributes.getValue("location"));
                 } else if (attributes.getValue("type").equals("poll")) {
-                    meter = new PushMeter(attributes.getValue("id"), attributes.getValue("brand"), "poll");
+                    meter = new PollMeter(attributes.getValue("id"), attributes.getValue("brand"), "poll");
                     meter.setLocation(address, attributes.getValue("location"));
                 }
                 break;
             case "meterReading":
-                meterReading = new MeterReading(Double.parseDouble(attributes.getValue("reading")), LocalDateTime.ofEpochSecond(Long.parseLong(attributes.getValue("date")), 0, ZoneOffset.ofHours(5)), attributes.getValue("flag"), meter);
+                meterReading = new MeterReading(Double.parseDouble(attributes.getValue("reading")), LocalDateTime.ofEpochSecond(Long.parseLong(attributes.getValue("date")), 0, ZoneOffset.ofHours(0)), attributes.getValue("flag"), meter);
                 break;
         }
     }

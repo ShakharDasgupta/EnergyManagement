@@ -14,20 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package csc241hw06;
+package csc241hw07;
 
 /**
  *
  * @author Shakhar Dasgupta<sdasgupt@oswego.edu>
  */
-public class Commercial extends Address {
+public class CommercialAccount extends Account {
 
-    public Commercial(String street, int number, String zipCode, String type) {
-        super(street, number, zipCode, type);
+    public CommercialAccount(String accountNumber, Customer customer) {
+        super(accountNumber, customer);
     }
 
-    public String getType() {
-        return type;
+    public void updateBalance() {
+        double sum = 0;
+        for (Address a : getAddresses()) {
+            for (Meter m : a.getMeters()) {
+                for (MeterReading mr : m.getReadings()) {
+                    sum += mr.getReading();
+                }
+            }
+        }
+        setBalance(sum * Constants.commercialUnitRate);
     }
-
 }
