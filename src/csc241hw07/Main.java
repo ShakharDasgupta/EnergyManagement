@@ -225,6 +225,7 @@ public class Main {
                         default:
                             System.out.println("Invalid entity: " + entity);
                     }
+                    break;
                 case "quit":
                     System.out.println("Program ending");
                     System.exit(0);
