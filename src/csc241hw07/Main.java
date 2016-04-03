@@ -19,8 +19,6 @@ package csc241hw07;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.xml.parsers.SAXParserFactory;
@@ -160,28 +158,28 @@ public class Main {
                     break;
                 case "check":
                     entity = sc.next();
-                    switch(entity) {
+                    switch (entity) {
                         case "customer":
-                            for(Customer c : customers) {
-                                if(c.getAccounts().length == 0) {
+                            for (Customer c : customers) {
+                                if (c.getAccounts().length == 0) {
                                     System.out.println(c.getLastName() + ", " + c.getFirstName());
                                 }
                             }
                             break;
                         case "account":
-                            for(Customer c : customers) {
-                                for(Account acc : c.getAccounts()) {
-                                    if(acc.getAddresses().length == 0) {
+                            for (Customer c : customers) {
+                                for (Account acc : c.getAccounts()) {
+                                    if (acc.getAddresses().length == 0) {
                                         System.out.println(acc.getAccountNumber());
                                     }
                                 }
                             }
                             break;
                         case "address":
-                            for(Customer c : customers) {
-                                for(Account acc : c.getAccounts()) {
-                                    for(Address addr : acc.getAddresses()) {
-                                        if(addr.getMeters().length == 0) {
+                            for (Customer c : customers) {
+                                for (Account acc : c.getAccounts()) {
+                                    for (Address addr : acc.getAddresses()) {
+                                        if (addr.getMeters().length == 0) {
                                             System.out.println(addr.getNumber() + " " + addr.getStreet());
                                         }
                                     }
@@ -189,15 +187,15 @@ public class Main {
                             }
                             break;
                         case "meter":
-                            for(Customer c : customers) {
-                                for(Account acc : c.getAccounts()) {
-                                    for(Address addr : acc.getAddresses()) {
-                                        for(Meter m : addr.getMeters()) {
-                                            if(m.getReadings().length == 0)
+                            for (Customer c : customers) {
+                                for (Account acc : c.getAccounts()) {
+                                    for (Address addr : acc.getAddresses()) {
+                                        for (Meter m : addr.getMeters()) {
+                                            if (m.getReadings().length == 0) {
                                                 System.out.println(m.getID());
-                                            else {
-                                                for(MeterReading mr : m.getReadings()) {
-                                                    if(!mr.getFlag().equals(m.getType())) {
+                                            } else {
+                                                for (MeterReading mr : m.getReadings()) {
+                                                    if (!mr.getFlag().equals(m.getType())) {
                                                         System.out.println(m.getID());
                                                         break;
                                                     }
@@ -214,10 +212,10 @@ public class Main {
                     break;
                 case "report":
                     entity = sc.next();
-                    switch(entity) {
+                    switch (entity) {
                         case "balance":
-                            for(Customer c : customers) {
-                                for(Account acc : c.getAccounts()) {
+                            for (Customer c : customers) {
+                                for (Account acc : c.getAccounts()) {
                                     System.out.println("Account: " + acc.getAccountNumber());
                                     System.out.println("  Customer: " + c.getLastName() + ", " + c.getFirstName());
                                     System.out.println("  Balance: $" + df.format(acc.getCurrentBalance()));
