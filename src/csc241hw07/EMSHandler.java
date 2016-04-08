@@ -51,10 +51,16 @@ public class EMSHandler extends DefaultHandler {
             case "customer":
                 lastName = attributes.getValue("lastName");
                 firstName = attributes.getValue("firstName");
+                customer = new Customer(lastName, firstName);
                 break;
             case "account":
                 accountType = attributes.getValue("type");
                 accountNumber = attributes.getValue("accountNumber");
+                if (accountType.equals("residential")) {
+                    account = new ResidentialAccount(accountNumber, customer);
+                } else if (accountType.equals("commercial")) {
+                    account = new CommercialAccount(accountNumber, customer);
+                }
                 break;
             case "address":
                 if (attributes.getValue("type").equals("mailing")) {
@@ -63,16 +69,7 @@ public class EMSHandler extends DefaultHandler {
                     } else {
                         address = new Commercial(attributes.getValue("street"), Integer.parseInt(attributes.getValue("number")), attributes.getValue("zipCode"), "mailing");
                     }
-                    if (customer == null) {
-                        customer = new Customer(lastName, firstName, address);
-                    }
-                    if (account == null) {
-                        if (accountType.equals("residential")) {
-                            account = new ResidentialAccount(accountNumber, customer);
-                        } else if (accountType.equals("commercial")) {
-                            account = new CommercialAccount(accountNumber, customer);
-                        }
-                    }
+                    customer.setMailingAddress(address);
                 } else if (attributes.getValue("type").equals("apartment")) {
                     address = new Apartment(attributes.getValue("street"), Integer.parseInt(attributes.getValue("number")), attributes.getValue("zipCode"), "apartment", attributes.getValue("unit"));
                 } else if (attributes.getValue("type").equals("commercial")) {
@@ -85,7 +82,7 @@ public class EMSHandler extends DefaultHandler {
                 if (attributes.getValue("type").equals("push")) {
                     meter = new PushMeter(attributes.getValue("id"), attributes.getValue("brand"), "push");
                     meter.setLocation(address, attributes.getValue("location"));
-                } else if (attributes.getValue("type").equals("poll")) {
+                } else if (attributes.getValue("type").equals("poll") || attributes.getValue("type").equals("polling")) {
                     meter = new PollMeter(attributes.getValue("id"), attributes.getValue("brand"), "poll");
                     meter.setLocation(address, attributes.getValue("location"));
                 }
@@ -99,31 +96,41 @@ public class EMSHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName) {
             case "customer":
-                customers.add(customer);
-                customer = null;
+                if (customer != null) {
+                    customers.add(customer);
+                    customer = null;
+                }
                 break;
             case "account":
-                for (Address a : addresses) {
-                    account.addAddress(a);
+                if (account != null) {
+                    for (Address a : addresses) {
+                        account.addAddress(a);
+                    }
+                    addresses = new ArrayList<>();
+                    account.updateBalance();
+                    customer.addAccount(account);
+                    account = null;
                 }
-                addresses = new ArrayList<>();
-                account.updateBalance();
-                customer.addAccount(account);
-                account = null;
                 break;
             case "address":
-                if (!address.getType().equals("mailing")) {
-                    addresses.add(address);
+                if (address != null) {
+                    if (!address.getType().equals("mailing")) {
+                        addresses.add(address);
+                    }
+                    address = null;
                 }
-                address = null;
                 break;
             case "meter":
-                address.addMeter(meter);
-                meter = null;
+                if (meter != null) {
+                    address.addMeter(meter);
+                    meter = null;
+                }
                 break;
             case "meterReading":
-                meter.addReading(meterReading);
-                meterReading = null;
+                if (meterReading != null) {
+                    meter.addReading(meterReading);
+                    meterReading = null;
+                }
                 break;
         }
     }

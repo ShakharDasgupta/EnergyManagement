@@ -29,10 +29,9 @@ class Customer {
     private Address mailingAddress;
     private ArrayList<Account> accounts;
 
-    public Customer(String lastName, String firstName, Address mailingAddress) {
+    public Customer(String lastName, String firstName) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.mailingAddress = mailingAddress;
         accounts = new ArrayList<>();
     }
 
@@ -46,6 +45,10 @@ class Customer {
 
     public Address getMailingAddress() {
         return mailingAddress;
+    }
+    
+    public void setMailingAddress(Address mailingAddress) {
+        this.mailingAddress = mailingAddress;
     }
 
     public Account[] getAccounts() {
