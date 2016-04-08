@@ -109,6 +109,7 @@ public class Main {
                                             found = true;
                                             System.out.println("Number: " + addr.getNumber());
                                             System.out.println("Street: " + addr.getStreet());
+                                            System.out.println("Zip: " + addr.getZipCode());
                                             System.out.println("Type: " + addr.getType());
                                             if (addr instanceof Apartment) {
                                                 System.out.println("Unit: " + ((Apartment) addr).getUnit());
@@ -138,10 +139,10 @@ public class Main {
                                                 System.out.println("Brand: " + m.getBrand());
                                                 System.out.println("Location: " + m.getLocation());
                                                 System.out.println("Type: " + m.getType());
-                                                System.out.println("Meter Readings:");
+                                                System.out.println("Meters Readings:");
                                                 for (MeterReading mr : m.getReadings()) {
                                                     LocalDateTime ldt = mr.getDateTime();
-                                                    System.out.printf("%d-%d-%d %d:%d:%d%n", ldt.getYear(), ldt.getMonthValue(), ldt.getDayOfMonth(), ldt.getHour(), ldt.getMinute(), ldt.getSecond());
+                                                    System.out.printf("  %d-%d-%d %d:%d:%d%n", ldt.getYear(), ldt.getMonthValue(), ldt.getDayOfMonth(), ldt.getHour(), ldt.getMinute(), ldt.getSecond());
                                                 }
                                             }
                                         }
@@ -228,7 +229,7 @@ public class Main {
                     break;
                 case "quit":
                     System.out.println("Program ending");
-                    System.exit(0);
+                    return;
                 default:
                     System.out.println("Invalid command: " + command);
             }
